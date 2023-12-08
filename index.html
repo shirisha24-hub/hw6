@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Vue Contact List</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ message }}</h1>
+
+      <div class="button-container">
+        <button @click="toggleDetails">
+          {{ showDetails ? 'Hide Details' : 'Show Details' }}
+        </button>
+        <button @click="toggleEdit">
+          {{ edit ? 'Turn Off Editing' : 'Turn On Editing' }}
+        </button>
+      </div>
+
+      <div v-for="(contact, index) in contacts" :key="index">
+        <div class="contact-card">
+          <p>Name: {{ contact.name }}</p>
+          <p>Email: {{ contact.email }}</p>
+          <p v-if="showDetails">Age: {{ contact.age }}</p>
+          <p v-if="edit">Email: <input v-model="contact.email" /></p>
+          <button @click="incrementAge(index)">Increment Age</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
